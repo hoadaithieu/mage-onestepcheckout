@@ -1,0 +1,86 @@
+<?php if (!$this->isLoggedIn()) :?>
+
+<div class="vcosc-popup-background" style="display:none">
+</div>
+
+<div id="vcosc-popup-container" class="vcosc-popup-container" style="display:none">
+	<div class="col-2">
+		<span class="close">x</span>
+        <h2><?php echo $this->__('Login here') ?></h2>
+        <form id="vcosc-login-form" action="" method="post">
+        <fieldset>
+            <?php echo $this->getBlockHtml('formkey'); ?>
+            <ul class="form-list">
+                <li>
+                    <label for="login-email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+                    <div class="input-box">
+                        <input type="text" class="input-text required-entry validate-email" id="login-email" name="login[username]" value="<?php echo $this->escapeHtml($this->getUsername()) ?>" />
+                    </div>
+                </li>
+                <li>
+                    <label for="login-password" class="required"><em>*</em><?php echo $this->__('Password') ?></label>
+                    <div class="input-box">
+                        <input type="password" class="input-text required-entry" id="login-password" name="login[password]" />
+                    </div>
+                </li>
+            </ul>
+        </fieldset>
+        </form>
+		<p class="required"><?php echo $this->__('* Required Fields') ?></p>
+    </div>
+	
+	<div class="col2-set">
+		<div class="buttons-set">
+			<button type="submit" class="button" onclick="loginForm.save()"><span><span><?php echo $this->__('Login') ?></span></span></button>
+			<a href="<?php echo $this->getUrl('customer/account/forgotpassword') ?>" class="f-left"><?php echo $this->__('Forgot your password?') ?></a>
+			<img id="vcosc-login-waiting" src="<?php echo $this->getSkinUrl('images/vc_onestepcheckout/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Loading next step...') ?>" title="<?php echo $this->__('Loading next step...') ?>" class="v-middle" style="display:none"/> 
+		</div>
+	</div>
+		
+	
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var loginForm = new LoginForm('vcosc-login-form', '<?php echo $this->getUrl('vc_onestepcheckout/index/loginPost') ?>');
+
+toCenter('vcosc-popup-container', 0, 10, 'fixed');
+if ($$('.page-login a')) {
+	$$('.page-login a').each(function(element) {
+		Event.observe(element, 'click', function(el) {
+			$$('.vcosc-popup-background').each(
+			   function (e) {
+				  e.setStyle({display: ''}); 
+			   } 
+			);		
+		
+			$$('.vcosc-popup-container').each(
+			   function (e) {
+				  e.setStyle({display: ''}); 
+			   } 
+			);		
+		});
+		
+	});
+}
+
+if ($$('.vcosc-popup-container .close')) {
+	$$('.vcosc-popup-container .close').each(function(element) {
+		Event.observe(element, 'click', function(el) {
+			$$('.vcosc-popup-background').each(
+			   function (e) {
+				  e.setStyle({display: 'none'}); 
+			   } 
+			);		
+		
+			$$('.vcosc-popup-container').each(
+			   function (e) {
+				  e.setStyle({display: 'none'}); 
+			   } 
+			);		
+		});
+	});
+}
+//]]>
+</script>
+<?php endif;?>

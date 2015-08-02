@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <VC_OneStepCheckout>
+            <version>1.0.0</version>
+        </VC_OneStepCheckout>
+    </modules>
+    <frontend>
+        <routers>
+            <vc_onestepcheckout>
+                <use>standard</use>
+                <args>
+                    <module>VC_OneStepCheckout</module>
+                    <frontName>onestepcheckout</frontName>
+                </args>
+            </vc_onestepcheckout>
+        </routers>
+        <layout>
+            <updates>
+                <vc_onestepcheckout>
+                    <file>vc_onestepcheckout.xml</file>
+                </vc_onestepcheckout>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+			<vc_onestepcheckout>
+				<use>admin</use>
+				<args>
+					<module>VC_OneStepCheckout</module>
+					<frontName>vc_onestepcheckout</frontName>
+				</args>
+			</vc_onestepcheckout>
+        </routers>
+    </admin>
+    <adminhtml>
+		
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<vc_all>
+							<children>
+					
+								<vc_onestepcheckout>
+									<title>VC OneStepCheckout</title>
+									<sort_order>70</sort_order>						
+									
+								</vc_onestepcheckout>
+							</children>
+						</vc_all>
+						<system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <vc_onestepcheckout>
+                                            <title>VC OneStepCheckout Section</title>
+                                        </vc_onestepcheckout>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+												
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<vc_onestepcheckout>
+					<file>vc_onestepcheckout.xml</file>
+				</vc_onestepcheckout>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+        <models>
+            <vc_onestepcheckout>
+                <class>VC_OneStepCheckout_Model</class>
+                <resourceModel>vc_onestepcheckout_resource</resourceModel>
+            </vc_onestepcheckout>
+        </models>	
+		
+		<resources>
+			<vc_onestepcheckout_setup>
+				<setup>
+					<module>VC_OneStepCheckout</module>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</vc_onestepcheckout_setup>
+			<vc_onestepcheckout_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</vc_onestepcheckout_write>
+			<vc_onestepcheckout_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</vc_onestepcheckout_read>
+		</resources>
+				
+        <blocks>
+            <vc_onestepcheckout>
+                <class>VC_OneStepCheckout_Block</class>
+            </vc_onestepcheckout>
+        </blocks>
+	
+        <helpers>
+            <vc_onestepcheckout>
+                <class>VC_OneStepCheckout_Helper</class>
+            </vc_onestepcheckout>
+        </helpers>
+		
+    </global>
+	
+	<default>
+		<vc_onestepcheckout>
+			<general>
+				<enable>0</enable>
+			</general>
+		</vc_onestepcheckout>
+	</default>
+	
+</config>
